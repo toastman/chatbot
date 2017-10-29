@@ -93,4 +93,9 @@ controller.on("slash_command", (bot, message) => {
   }
 })
 
-controller.setupWebserver(PORT, (err, app) => controller.createWebhookEndpoints(app))
+controller.setupWebserver(PORT, (err, app) => {
+    if(err) console.error(`Something goes wrong: ${err}`)
+    console.log(`App is running on port: ${PORT}`)
+
+    controller.createWebhookEndpoints(app)
+})
