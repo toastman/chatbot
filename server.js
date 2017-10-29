@@ -13,7 +13,7 @@ app.get('/', (req, res) => res.send("Star Wars slack integration via chat bot!")
 // })
 
 const controller = Botkit.slackbot({
-  debug: false
+  debug: true
 })
 
 // connect the bot to a stream of messages
