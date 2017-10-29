@@ -7,10 +7,10 @@ const express = require("express")
 const app = express()
 
 app.get('/', (req, res) => res.send("Star Wars slack integration via chat bot!"))
-app.post('/', (req, res) => {
-    console.log(`POST: Star Wars slack integration via chat bot!: ${req.body}`)
-    res.send("POST: Star Wars slack integration via chat bot!")
-})
+// app.post('/', (req, res) => {
+//     console.log(`POST: Star Wars slack integration via chat bot!: ${req.body}`)
+//     res.send("POST: Star Wars slack integration via chat bot!")
+// })
 
 const controller = Botkit.slackbot({
   debug: false
@@ -26,12 +26,6 @@ bot.configureIncomingWebhook({
   url:
     "https://hooks.slack.com/services/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"
 })
-bot.sendWebhook({
-    text: 'Hey!',
-    channel: '#general',
-  },(err,res) => {
-    console.log('Something goes wrong')
-  })
 
 const getResponse = ({ id, bot, message }) => {
   axios
@@ -99,6 +93,4 @@ controller.on("slash_command", (bot, message) => {
   }
 })
 
-controller.setupWebserver(PORT, (err, app) =>
-    controller.createWebhookEndpoints(app)
-)
+controller.setupWebserver(PORT, (err, app) => controller.createWebhookEndpoints(app))
